@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活动管理 </title>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/static/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/admin3.js"></script>
+</head>
+<body>
+
+    <div class="modal fade" id="myModal2" aria-labelledby="myModallabel" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 id="activitytitle" class="modal-title"></h5>
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-3">活动详情：</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2"></label>
+                            <div id="activityintroduce"
+                                style="white-space:normal; word-break:break-all;overflow:hidden;"></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal3" aria-labelledby="myModallabel" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title"></h5>
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">旧密码：</label>
+                            <div class="col-lg-9">
+                                <input id="oldpwd" type="password" placeholder="password" value="" name="password"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">新密码：</label>
+                            <div class="col-lg-9">
+                                <input id="ipwd" type="password" placeholder="password" value="" name="password"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">确认密码：</label>
+                            <div class="col-lg-9">
+                                <input id="i2pwd" type="password" placeholder="password" value="" name="password"
+                                    class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p id="msg_pwd" style="margin-left: 110px"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" type="button" data-dismiss="modal">close</button>
+                        <button class="btn btn-success" type="button" disabled="disabled" data-dismiss="modal"
+                            id="btn_changepwd" onclick="changepassword()">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal" aria-labelledby="myModallabel" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title" id="myModallabel">添加活动</h5>
+                </div>
+                <form id="formData" class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">活动名：</label>
+                            <div class="col-lg-9">
+                                <input id="activityname1" type="text" placeholder="活动名" class="form-control"></br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">上传活动封面：</label>
+                            <div class="col-lg-9">
+                                <input id="fileName1" type="file" class="fileName1" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">介绍：</label>
+                            <div class="col-lg-9">
+                                <textarea id="introduce1" placeholder=" 活动介绍" cols="56" rows="7" warp="virtual "
+                                    style="border: 1px solid #DDD;resize:none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" type="button" data-dismiss="modal">close</button>
+                        <button class="btn btn-success" type="button" 
+                            onclick="createactivity()">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal4" aria-labelledby="myModallabel" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title">修改活动</h5>
+                </div>
+                <form class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">活动：</label>
+                            <div class="col-lg-9">
+                                <textarea id="introduce2" cols="56" rows="7" warp="virtual "
+                                    style="border: 1px solid #DDD;resize:none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" type="button" data-dismiss="modal">close</button>
+                        <button class="btn btn-success" type="button" data-dismiss="modal" id="btn_changerole"
+                            onclick="changeactivity()">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal6" aria-labelledby="myModallabel" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h5 class="modal-title" id="myModallabel">修改组织介绍</h5>
+                </div>
+                <form id="formData" class="form-horizontal">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-lg-2">新的介绍：</label>
+                            <div class="col-lg-9">
+                                <textarea id="introduce1" placeholder="   介绍"  cols="56" rows="7"
+                                    warp="virtual " style="border: 1px solid #DDD;resize:none"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-default" type="button" data-dismiss="modal">close</button>
+                        <button class="btn btn-success" type="button" data-dismiss="modal"
+                            onclick="editintriduce()">submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="welcome"></a>
+                    </li>
+                    <li><a data-target="#myModal6" data-toggle="modal">修改组织介绍</a>
+                    </li>
+                    <li><a data-target="#myModal3" data-toggle="modal">修改密码</a>
+                    </li>
+                    <li><a onclick="logout()">安全退出</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2">
+                <a href="http://localhost:8081/admin/index" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil">
+                    </span> 成员管理</a>
+                <a href="http://localhost:8081/admin/notice" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                    </span> 部门事项通知</a>
+                <a href="http://localhost:8081/admin/activity" class="list-group-item active">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true">
+                    </span> 活动管理</a>
+                <a href="http://localhost:8081/admin/enroll" class="list-group-item">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true">
+                    </span> 纳新和干部换届</a>
+            </div>
+            <div class="col-sm-10">
+                <ol id="ol1" class="breadcrumb">
+                    <li class="active" id="li1">活动详情
+                    </li>
+                </ol>
+                <div id="div1" class="panel panel-default">
+                    <div class="panel-heading">
+                        添加活动
+                    </div>
+                    <div class="panel-body">
+                        <label for="name">添加活动</label>
+                        <button class="btn btn-success" data-target="#myModal" data-toggle="modal">
+                            点击添加
+                        </button>
+                    </div>
+                </div>
+                <!--
+                    列表展示
+                -->
+                <div class="table-responsive">
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr id="tr1">
+                                <th>编号</th>
+                                <th>活动名</th>
+                                <th>状态</th>
+                                <th>发布组织</th>
+                                <th>备注</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody1">
+                        </tbody>
+                    </table>
+                </div>
+                <ul id="ul1" class="pagination" style="float: right;">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p class="text-center">
+            TKKC社团组织管理系统
+        </p>
+    </div>
+</body>
+
+
+</html>

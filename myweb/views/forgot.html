@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>忘记密码 </title>
+    <link rel="stylesheet" type="text/css" href="static/css/login.css" />
+    <script type="text/javascript" src="static/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="static/js/login.js"></script>
+</head>
+
+<body>
+    <div class="htmleaf-container">
+        <div id="wrapper" class="login-page">
+            <h1 align="center">TKKC社团组织管理系统</h1>
+                <div id="login_form" class="form">
+                    <img src="/static/images/logo.jpg" height="110px" width="135px">
+                    <form id="form3" class="login-form">
+                        <input type="email" placeholder="电子邮件" id="f_emial" name="username" />
+                        <font size="2">密码为8到16位，包含大小写字母和数字</font>
+                        <input type="password" placeholder="密码" id="r_password1" />
+                        <input type="password" placeholder="确认密码" id="r_password" />
+                        <p class="message" id="msg_pwd"></p>
+                        <input type="text" placeholder="验证码" id="f_code" name="code" />
+                        <input type="button" id="btn" value="获取验证码" disabled="disable" onclick="forgotsettime(this)" />
+                        <button type="button"  id="forgot">重置密码</button>
+                        <p class="message"> <a href="http://localhost:8081">返回登录界面</a></p>
+                    </form>
+                </div>
+        </div>
+    </div>
+</body>
+
+</html>
